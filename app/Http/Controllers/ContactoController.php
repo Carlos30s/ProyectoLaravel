@@ -11,8 +11,14 @@ class ContactoController extends Controller
         return view('formulario-contacto');
     }
 
-    public function recibeFormulario()
+    public function recibeFormulario(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|min:5',
+            'correo' => 'required|email',
+            'mensaje' => 'required|min:10',
+        ]);
+
         return "Formulario recibido";
     }
 }
